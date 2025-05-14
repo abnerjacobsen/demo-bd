@@ -3,12 +3,12 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]  # https://python-poetry.org/docs/pyproject/
-name = "snap-backend-template"
+name = "demo-bd"
 version = "0.0.0"
-description = "SnapEnv template for backend server."
+description = "Awesome demo_bd created by abnerjacobsen"
 authors = ["Abner G Jacobsen <abner@apoana.com.br>"]
 readme = "README.md"
-repository = "https://github.com/snapenv/snap-backend-template"
+repository = "https://github.com/abnerjacobsen/demo-bd"
 
 [tool.commitizen]  # https://commitizen-tools.github.io/commitizen/config/
 bump_message = "bump(release): v$current_version → v$new_version"
@@ -108,7 +108,7 @@ convention = "numpy"
         --host $host \
         --port $port \
         --reload \
-        snap_backend_template.api:app
+        demo_bd.api:app
     } else {
       gunicorn \
         --access-logfile - \
@@ -120,7 +120,7 @@ convention = "numpy"
         --worker-class uvicorn.workers.UvicornWorker \
         --worker-tmp-dir /dev/shm \
         --workers 2 \
-        snap_backend_template.api:app
+        demo_bd.api:app
     } fi
     """
 

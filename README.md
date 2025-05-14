@@ -1,62 +1,97 @@
-[![Use This Template](https://img.shields.io/static/v1?label=GitHub%20Repostory&message=Create%20Using%20This%20Template&color=blue&logo=github)](https://github.com/snapenv/snap-backend-template/generate)
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/abnerjacobsen/demo-bd) [![Open in GitHub Codespaces](https://img.shields.io/static/v1?label=GitHub%20Codespaces&message=Open&color=blue&logo=github)](https://codespaces.new/abnerjacobsen/demo-bd)
 
-# About this template
+# demo-bd
 
-This template repository provides the boilerplate to create a python backend server using FastAPI.
+Awesome demo_bd created by abnerjacobsen
 
-It was created having in mind SnapEnv people and what the most common use-cases would be. Following its structure you'll get into developing your next FastAPI server in no time!
+## Using
 
-## 🎁 Features
+To serve this app, run:
 
-- 🧑‍💻 Quick and reproducible development environments with VS Code's [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers), PyCharm's [Docker Compose interpreter](https://www.jetbrains.com/help/pycharm/using-docker-compose-as-a-remote-interpreter.html#docker-compose-remote), and [GitHub Codespaces](https://github.com/features/codespaces)
-- 🌈 Cross-platform support for Linux, macOS (Apple silicon and Intel), and Windows
-- 🐚 Modern shell prompt with [Starship](https://github.com/starship/starship)
-- 📦 Packaging and dependency management with [Poetry](https://github.com/python-poetry/poetry)
-- 📃 Documentation structure using [mkdocs](http://www.mkdocs.org)
-- ⚡️ Task running with [Poe the Poet](https://github.com/nat-n/poethepoet)
-- ✍️ Code formatting with [Ruff](https://github.com/charliermarsh/ruff)
-- ✅ Code linting with [Pre-commit](https://pre-commit.com/), [Mypy](https://github.com/python/mypy), and [Ruff](https://github.com/charliermarsh/ruff)
-- 🏷 Optionally follows the [Conventional Commits](https://www.conventionalcommits.org/) standard to automate [Semantic Versioning](https://semver.org/) and [Keep A Changelog](https://keepachangelog.com/) with [Commitizen](https://github.com/commitizen-tools/commitizen)
-- 💌 Verified commits with [GPG](https://gnupg.org/)
-- ♻️ Continuous integration with [GitHub Actions](https://docs.github.com/en/actions) or [GitLab CI/CD](https://docs.gitlab.com/ee/ci/)
-- 🧪 Test coverage with [Coverage.py](https://github.com/nedbat/coveragepy)
-
-## Getting Started
-
-> **DO NOT CLONE OR FORK**
-
-If you want to set up this template:
-
-1. Request a repository on SnapEnv GitHub by following the standard procedure on the wiki. It will install the template directly. Alternatively, set it up in your personal GitHub account by clicking **[Use this template](https://github.com/snapenv/snap-backend-template/generate)**.
-2. Wait until the first run of CI finishes. Github Actions will commit to your new repo with a "refactor: 🎉 Ready to clone and code." message.
-3. Uset git to clone your new repository.
-4. Delete optional files: 
-    - If you don't need automatic documentation generation, you can delete folder `docs`, `mkdocs-overrides`, file `.github\workflows\github-pages-dev.yml`, `.github\workflows\reusable-github-pages.yml` and `mkdocs.yml`
-    - If you don't want automatic testing, you can delete folder `tests` and file `.github\workflows\test.yml`
-5. Prepare a virtual environment and test:
-```bash
-poetry install
-poetry shell
-ENVIRONMENT=dev poe api --dev
+```sh
+docker compose up app
 ```
-6. Adapt anything else to your project. 
-7. Read the file [docs/index.md](docs/index.md) for more information about development of your server.
+
+and open [localhost:8000](http://localhost:8000) in your browser.
+
+Within the Dev Container this is equivalent to:
+
+```sh
+poe api
+```
 
 ## Contributing
 
-We love all types of contributions: whether big or small helping in improving this community resource.
+<details>
+<summary>Prerequisites</summary>
 
-A contribution can be as small as a ⭐ or even finding and creating issues.
+<details>
+<summary>1. Set up Git to use SSH</summary>
 
-1. There are a number of [open issues present](https://github.com/snapenv/snap-backend-template/issues) which can be good ones to start with
-2. If you have suggestions for enhancements, wish to contribute a simple fix such as correcting a typo, or want to address an apparent bug, please feel free to initiate a new issue or submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) to learn how to setup a local development environment for this repository.
-2. If you're contemplating a larger change or addition to this repository, be it in terms of its structure or the features, kindly begin by creating a new issue [open a new issue :octocat:](https://github.com/snapenv/snap-backend-template/issues/new) and outline your proposed changes. This will allow us to engage in a discussion before you dedicate a significant amount of time or effort. Your cooperation and understanding are appreciated
+1. [Generate an SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) and [add the SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+1. Configure SSH to automatically load your SSH keys:
+    ```sh
+    cat << EOF >> ~/.ssh/config
+    
+    Host *
+      AddKeysToAgent yes
+      IgnoreUnknown UseKeychain
+      UseKeychain yes
+      ForwardAgent yes
+    EOF
+    ```
 
-## Credits
+</details>
 
-I adapted this template from these excellent sources:
+<details>
+<summary>2. Install Docker</summary>
 
-- [poetry-cookiecutter](https://github.com/radix-ai/poetry-cookiecutter) by [radix-ai](https://github.com/radix-ai)
-- [ukp-project-template](https://github.com/UKPLab/ukp-project-template) by [UKPLab](https://github.com/UKPLab)
-- [python-project-template](https://github.com/rochacbruno/python-project-template/) by [rochacbruno](https://github.com/rochacbruno)
-- [bootstrap-python-package](https://github.com/febus982/bootstrap-python-package) by [febus982](https://github.com/febus982)
+1. [Install Docker Desktop](https://www.docker.com/get-started).
+    - _Linux only_:
+        - Export your user's user id and group id so that [files created in the Dev Container are owned by your user](https://github.com/moby/moby/issues/3206):
+            ```sh
+            cat << EOF >> ~/.bashrc
+            
+            export UID=$(id --user)
+            export GID=$(id --group)
+            EOF
+            ```
+
+</details>
+
+<details>
+<summary>3. Install VS Code or PyCharm</summary>
+
+1. [Install VS Code](https://code.visualstudio.com/) and [VS Code's Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). Alternatively, install [PyCharm](https://www.jetbrains.com/pycharm/download/).
+2. _Optional:_ install a [Nerd Font](https://www.nerdfonts.com/font-downloads) such as [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode) and [configure VS Code](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions) or [configure PyCharm](https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions) to use it.
+
+</details>
+
+</details>
+
+<details open>
+<summary>Development environments</summary>
+
+The following development environments are supported:
+
+1. ⭐️ _GitHub Codespaces_: click on _Code_ and select _Create codespace_ to start a Dev Container with [GitHub Codespaces](https://github.com/features/codespaces).
+1. ⭐️ _Dev Container (with container volume)_: click on [Open in Dev Containers](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/abnerjacobsen/demo-bd) to clone this repository in a container volume and create a Dev Container with VS Code.
+1. _Dev Container_: clone this repository, open it with VS Code, and run <kbd>Ctrl/⌘</kbd> + <kbd>⇧</kbd> + <kbd>P</kbd> → _Dev Containers: Reopen in Container_.
+1. _PyCharm_: clone this repository, open it with PyCharm, and [configure Docker Compose as a remote interpreter](https://www.jetbrains.com/help/pycharm/using-docker-compose-as-a-remote-interpreter.html#docker-compose-remote) with the `dev` service.
+1. _Terminal_: clone this repository, open it with your terminal, and run `docker compose up --detach dev` to start a Dev Container in the background, and then run `docker compose exec dev zsh` to open a shell prompt in the Dev Container.
+
+</details>
+
+<details>
+<summary>Developing</summary>
+
+- This project follows the [Conventional Commits](https://www.conventionalcommits.org/) standard to automate [Semantic Versioning](https://semver.org/) and [Keep A Changelog](https://keepachangelog.com/) with [Commitizen](https://github.com/commitizen-tools/commitizen).
+- Run `poe` from within the development environment to print a list of [Poe the Poet](https://github.com/nat-n/poethepoet) tasks available to run on this project.
+- Run `poetry add {package}` from within the development environment to install a run time dependency and add it to `pyproject.toml` and `poetry.lock`. Add `--group test` or `--group dev` to install a CI or development dependency, respectively.
+- Run `poetry update` from within the development environment to upgrade all dependencies to the latest versions allowed by `pyproject.toml`.
+- Run `poe docs`, `poe lint` and `ENVIRONMENT=dev poe test` before any commit, or your git push can fail. `poe docs` generate any new documentation for changes/additions in the python modules.
+- Run `cz --name cz_gitmoji commit` to commit files using conventional commits with emojis.
+- Run `cz --name cz_gitmoji bump --changelog` to bump the package's version, update the `CHANGELOG.md`, and create a git tag.
+- Run `git push --tags` to push the new tag to github.
+
+</details>

@@ -23,7 +23,7 @@ services:
       [
         "sh",
         "-c",
-        "sudo chown user $$SSH_AUTH_SOCK && cp --update /opt/build/poetry/poetry.lock /workspaces/snap-backend-template/ && mkdir -p /workspaces/snap-backend-template/.git/hooks/ && cp --update /opt/build/git/* /workspaces/snap-backend-template/.git/hooks/ && zsh"
+        "sudo chown user $$SSH_AUTH_SOCK && cp --update /opt/build/poetry/poetry.lock /workspaces/demo-bd/ && mkdir -p /workspaces/demo-bd/.git/hooks/ && cp --update /opt/build/git/* /workspaces/demo-bd/.git/hooks/ && zsh"
       ]
     environment:
       - POETRY_PYPI_TOKEN_PYPI

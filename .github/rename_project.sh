@@ -16,10 +16,10 @@ echo "Description: $description";
 
 echo "Renaming project..."
 
-original_author="snapenv"
-original_name="snap_backend_template"
-original_urlname="snap-backend-template"
-original_description="SnapEnv template for backend server."
+original_author="abnerjacobsen"
+original_name="demo_bd"
+original_urlname="demo-bd"
+original_description="Awesome demo_bd created by abnerjacobsen"
 # Iterate over all files in the repository
 git ls-files | while read -r filename; do
     # Exclude .github/workflows/rename_project.yml from renaming

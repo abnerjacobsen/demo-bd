@@ -15,12 +15,12 @@ RUN groupadd --gid $GID user && \
 USER user
 
 # Create and activate a virtual environment.
-ENV VIRTUAL_ENV /opt/snap-backend-template-env
+ENV VIRTUAL_ENV /opt/demo-bd-env
 ENV PATH $VIRTUAL_ENV/bin:$PATH
 RUN python -m venv $VIRTUAL_ENV
 
 # Set the working directory.
-WORKDIR /workspaces/snap-backend-template/
+WORKDIR /workspaces/demo-bd/
 
 
 
@@ -45,9 +45,9 @@ RUN --mount=type=cache,target=/var/cache/apt/ \
 USER user
 
 # Install the run time Python dependencies in the virtual environment.
-COPY --chown=user:user poetry.lock* pyproject.toml /workspaces/snap-backend-template/
+COPY --chown=user:user poetry.lock* pyproject.toml /workspaces/demo-bd/
 RUN mkdir -p /home/user/.cache/pypoetry/ && mkdir -p /home/user/.config/pypoetry/ && \
-    mkdir -p src/snap_backend_template/ && touch src/snap_backend_template/__init__.py && touch README.md
+    mkdir -p src/demo_bd/ && touch src/demo_bd/__init__.py && touch README.md
 RUN --mount=type=cache,uid=$UID,gid=$GID,target=/home/user/.cache/pypoetry/ \
     poetry install --only main --all-extras --no-interaction
 
@@ -72,7 +72,7 @@ RUN --mount=type=cache,uid=$UID,gid=$GID,target=/home/user/.cache/pypoetry/ \
     poetry install --all-extras --no-interaction
 
 # Persist output generated during docker build so that we can restore it in the dev container.
-COPY --chown=user:user .pre-commit-config.yaml /workspaces/snap-backend-template/
+COPY --chown=user:user .pre-commit-config.yaml /workspaces/demo-bd/
 RUN mkdir -p /opt/build/poetry/ && cp poetry.lock /opt/build/poetry/ && \
     git init && pre-commit install --install-hooks && \
     mkdir -p /opt/build/git/ && cp .git/hooks/commit-msg .git/hooks/pre-commit /opt/build/git/
@@ -105,5 +105,5 @@ COPY --from=poetry $VIRTUAL_ENV $VIRTUAL_ENV
 COPY --chown=user:user . .
 
 # Expose the app.
-ENTRYPOINT ["/opt/snap-backend-template-env/bin/poe"]
+ENTRYPOINT ["/opt/demo-bd-env/bin/poe"]
 CMD ["api"]
