@@ -1,0 +1,1 @@
+::: src.snap_backend_template.core.config.settings

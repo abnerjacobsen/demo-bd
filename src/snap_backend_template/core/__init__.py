@@ -1,0 +1,1 @@
+"""Snap FastStream Template Core."""

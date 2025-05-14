@@ -1,0 +1,29 @@
+services:
+  app:
+    image: snapenv/snap-backend-template-app:dev
+    build:
+      context: .
+      target: app
+    environment:
+      - ENVIRONMENT=dev
+    env_file:
+      - dev.env
+    volumes:
+      - .:/workspaces/snap-backend-template
+    # command: uvicorn snap-backend-template.api:app --host 0.0.0.0 --port 8000 --reload
+    command: ["api", "--dev"]
+
+  dozzle:
+      image: amir20/dozzle:latest
+      restart: always
+      environment:
+        DOZZLE_LEVEL: debug
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+      ports:
+        - 8088:8080
+      profiles:
+        - app
+        - dev
+
+
