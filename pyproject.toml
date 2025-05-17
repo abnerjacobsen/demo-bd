@@ -29,6 +29,10 @@ uuid-utils = "^0.10.0"
 cryptography = "^44.0.3"
 sqlalchemy-json = "^0.7.0"
 asyncpg = "^0.30.0"
+loguru = "^0.7.3"
+pendulum = "^3.1.0"
+stackprinter = "^0.2.12"
+starlette-context = "^0.4.0"
 
 [tool.poetry.group.test.dependencies]  # https://python-poetry.org/docs/master/managing-dependencies/
 commitizen = ">=3.21.3"
