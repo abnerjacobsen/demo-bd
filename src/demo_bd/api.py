@@ -1,4 +1,4 @@
-"""Snap App Template REST API."""
+"""Demo BD REST API."""
 
 import asyncio
 import logging
@@ -9,6 +9,8 @@ import coloredlogs
 from fastapi import FastAPI
 
 from demo_bd.core.config.settings import settings
+
+print(settings)
 
 
 @asynccontextmanager
