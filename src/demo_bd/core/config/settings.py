@@ -106,6 +106,8 @@ class AppSettings(SnapEnvCommonSettings):
         The tenant slug for multi-tenant deployments.
     LOG_LEVEL : str
         The log level for the application (e.g., "INFO", "DEBUG").
+    DEBUG : bool
+        Activate debug.
     DB : DbSettings
         Database configuration settings (instance of DbSettings).
     server : str
@@ -125,6 +127,7 @@ class AppSettings(SnapEnvCommonSettings):
     APP_SLUG: str
     TENANT_SLUG: str
     LOG_LEVEL: str
+    DEBUG: bool
     DB: DbSettings = DbSettings()
 
     # Computed settings
