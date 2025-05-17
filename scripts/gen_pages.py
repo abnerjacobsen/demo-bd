@@ -1,3 +1,5 @@
+"""Generate code reference pages and navigation for mkdocstrings."""
+
 # ==============================================================================
 #  Copyright (c) 2024 Federico Busetti                                         =
 #  <729029+febus982@users.noreply.github.com>                                  =

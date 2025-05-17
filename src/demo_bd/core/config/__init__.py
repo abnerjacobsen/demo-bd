@@ -1,1 +1,1 @@
-"""Snap FastStream Template core config."""
+"""Demo BD core config."""

@@ -1,7 +1,7 @@
 ---
 # source: https://github.com/adr/madr/blob/3.0.0/template/adr-template.md
 # These are optional elements. Feel free to remove any of them.
-status: {proposed | rejected | accepted | deprecated | … | superseded by [ADR-0005](0005-example.md)}
+status: {proposed | rejected | accepted | deprecated | … | superseded by [ADR-0001]0001-record-architecture-decisions.md)}
 date: {YYYY-MM-DD when the decision was last updated}
 deciders: {list everyone involved in the decision}
 consulted: {list everyone whose opinions are sought (typically subject-matter experts); and with whom there is a two-way communication}

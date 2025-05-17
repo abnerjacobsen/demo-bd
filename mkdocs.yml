@@ -19,6 +19,7 @@ plugins:
   - gen-files:
       scripts:
         - scripts/gen_pages.py  # or any other name or path
+  - autorefs
   - mkdocstrings:
       handlers:
         python:
