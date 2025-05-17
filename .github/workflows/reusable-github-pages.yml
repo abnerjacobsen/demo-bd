@@ -60,7 +60,11 @@ jobs:
 
       - name: Make sure previous versions are available to mike
         run: |
-          git fetch origin gh-pages --depth=1
+          if git ls-remote --exit-code --heads origin ${{ inputs.branch }}; then
+            git fetch origin ${{ inputs.branch }} --depth=1
+          else
+            echo "Branch ${{ inputs.branch }} não existe no remoto, pulando fetch"  
+      # git fetch origin gh-pages --depth=1
 
       - name: Build and deploy static pages
         run: |
