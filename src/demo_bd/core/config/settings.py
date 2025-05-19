@@ -31,6 +31,11 @@ from pydantic import computed_field
 from snapenv_core.settings.manager import ENVIRONMENT, PLATFORM, SnapEnvCommonSettings
 
 
+class SecuritySettings(SnapEnvCommonSettings):
+    APIKEY_NAME: str
+    APIKEY: str
+
+
 class DbSettings(SnapEnvCommonSettings):
     """
     Database connection and configuration settings.
@@ -132,6 +137,7 @@ class AppSettings(SnapEnvCommonSettings):
     LOG_LEVEL: str
     DEBUG: bool
     DB: DbSettings = DbSettings()
+    SECURITY: SecuritySettings = SecuritySettings()
 
     # Computed settings
     @computed_field  # type: ignore[misc]
