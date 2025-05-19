@@ -1,0 +1,1 @@
+::: src.demo_bd.schemas.app_info
