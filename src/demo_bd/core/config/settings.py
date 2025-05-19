@@ -32,6 +32,19 @@ from snapenv_core.settings.manager import ENVIRONMENT, PLATFORM, SnapEnvCommonSe
 
 
 class SecuritySettings(SnapEnvCommonSettings):
+    """
+    Security-related configuration settings.
+
+    This class centralizes all configuration options related to API key-based security for the application.
+
+    Attributes
+    ----------
+    APIKEY_NAME : str
+        The name of the API key header or parameter.
+    APIKEY : str
+        The value of the API key used for authentication.
+    """
+
     APIKEY_NAME: str
     APIKEY: str
 
