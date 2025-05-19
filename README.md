@@ -4,21 +4,45 @@
 
 Awesome demo_bd created by abnerjacobsen
 
-## Using
-
-To serve this app, run:
+# Install the dependencies and create virtualenv
 
 ```sh
-docker compose up app
+poetry shell
+poetry install
+```
+
+## Using
+
+To serve this app in dev mode, run:
+
+```sh
+ENVIRONMENT=dev poe api --dev
+```
+and open [localhost:8000](http://localhost:8000) in your browser.
+
+
+## Using  with Docker
+
+To build the container for using with docker:
+
+```sh
+docker compose build app
+```
+
+To run the container with docker compose:
+
+```sh
+docker compose --profile app up -d
 ```
 
 and open [localhost:8000](http://localhost:8000) in your browser.
 
-Within the Dev Container this is equivalent to:
+To stop the running container's with docker compose:
 
 ```sh
-poe api
+docker compose --profile app down
 ```
+
 
 ## Contributing
 
