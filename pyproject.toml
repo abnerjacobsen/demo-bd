@@ -176,6 +176,7 @@ convention = "numpy"
 
   [tool.poe.tasks.test]
   help = "Test this app"
+  env = { ENVIRONMENT = "dev" }
 
     [[tool.poe.tasks.test.sequence]]
     cmd = "coverage run"
@@ -185,3 +186,4 @@ convention = "numpy"
 
     [[tool.poe.tasks.test.sequence]]
     cmd = "coverage xml"
+
