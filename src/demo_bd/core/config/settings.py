@@ -102,6 +102,8 @@ class AppSettings(SnapEnvCommonSettings):
         The title of the application.
     APP_SLUG : str
         The slug identifier for the application.
+    APP_VERSION : str
+        Application version.
     TENANT_SLUG : str
         The tenant slug for multi-tenant deployments.
     LOG_LEVEL : str
@@ -125,6 +127,7 @@ class AppSettings(SnapEnvCommonSettings):
     # App settings
     APP_TITLE: str
     APP_SLUG: str
+    APP_VERSION: str
     TENANT_SLUG: str
     LOG_LEVEL: str
     DEBUG: bool
