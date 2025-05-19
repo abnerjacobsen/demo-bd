@@ -4,6 +4,7 @@ from fastapi.security.http import HTTPAuthorizationCredentials, HTTPBearer
 from fastapi_problem_details import ProblemException
 
 from demo_bd.core.config.settings import settings
+from demo_bd.core.fastapi.apikey import make_api_key_dependency
 from demo_bd.schemas.base import BaseSchemaModel
 from demo_bd.utils.formatters.datetime_formatter import fmt_datetime_into_iso8601_format
 
@@ -43,7 +44,14 @@ health_info_route = APIRouter(prefix="/v1/health", tags=["healt"])
     summary="Health status check.",
     status_code=status.HTTP_200_OK,
 )
-def status_check() -> dict:
+def status_check(
+    api_key: str = Depends(
+        make_api_key_dependency(
+            apikey_name=settings.SECURITY.APIKEY_NAME,
+            apikey_value=settings.SECURITY.APIKEY,
+        )
+    ),
+) -> dict:
     return {"message": f"Hello, Welcome to {settings.APP_TITLE} Status API!"}
 
 
