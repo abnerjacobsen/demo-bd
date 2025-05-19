@@ -5,23 +5,26 @@ https://github.com/Neoteroi/essentials-openapi
 Most likely, it is not desirable to edit this file by hand!
 -->
 
-# SnapEnv Backend Template API <span class="api-version">0.1.0</span>
+# Demo BD <span class="api-version">0.1.0</span>
 
 
-## <span class="api-tag">Endpoints</span>
+## <span class="api-tag">health</span>
 
 
 <hr class="operation-separator" />
 
-### <span class="http-get">GET</span> /compute
-Compute
+### <span class="http-get">GET</span> /v1/health/status
+Check API health status
 
 ??? note "Description"
-    Compute the result of a CPU-bound function.
+    Returns a simple message indicating that the API is running and accessible.
 
-    Returns
-    -------
-        int: fibonacci result
+    ### Usage
+    - Can be used for health checks and monitoring.
+    - Requires a valid API key for authentication.
+
+    #### Response
+    A JSON object with a welcome message.
 
 
 **Input parameters**
@@ -39,15 +42,407 @@ Compute
     </thead>
     <tbody>
         <tr>
-            <td class="parameter-name"><code>n</code></td>
+            <td class="parameter-name"><code>APIKeyQuery</code></td>
             <td>query</td>
-            <td>integer</td>
-            <td>42</td>
+            <td>string</td>
+            <td>N/A</td>
             <td>No</td>
+            <td>API key</td>
+        </tr>
+        <tr>
+            <td class="parameter-name"><code>APIKeyHeader</code></td>
+            <td>header</td>
+            <td>string</td>
+            <td>N/A</td>
+            <td>No</td>
+            <td>API key</td>
+        </tr>
+        <tr>
+            <td class="parameter-name"><code>authorization</code></td>
+            <td>query</td>
+            <td>string</td>
             <td></td>
+            <td>No</td>
+            <td>Chave de autorização, caso não esteja sendo enviada como header.</td>
         </tr>
     </tbody>
 </table>
+
+<p class="response-title">
+    <strong>Response <span class="response-code code-200">200</span>&nbsp;<span class="status-phrase">OK</span></strong>
+</p>
+
+=== "application/json"
+    
+    
+    ```json
+    {
+        "message": "Hello, Welcome to Demo BD Status API!"
+    }
+    ```
+    <span class="small-note">⚠️</span>&nbsp;<em class="small-note warning">This example has been generated automatically from the schema and it is not accurate. Refer to the schema for more information.</em>
+
+    
+
+    ??? hint "Schema of the response body"
+        ```json
+        {
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "title": "Message"
+                }
+            },
+            "type": "object",
+            "required": [
+                "message"
+            ],
+            "title": "StatusCheckResponseSchema",
+            "description": "Schema for health status check response.",
+            "example": {
+                "message": "Hello, Welcome to Demo BD Status API!"
+            }
+        }
+        ```
+
+
+
+<p class="response-title">
+    <strong>Other responses</strong>
+</p>
+
+=== "application/problem+json"
+    
+    
+    ```json
+    {
+        "type": "/some/uri-reference",
+        "title": "some title for the error situation",
+        "status": 500,
+        "detail": "some description for the error situation",
+        "instance": "/some/uri-reference#specific-occurrence-context"
+    }
+    ```
+    <span class="small-note">⚠️</span>&nbsp;<em class="small-note warning">This example has been generated automatically from the schema and it is not accurate. Refer to the schema for more information.</em>
+
+    
+
+    ??? hint "Schema of the response body"
+        ```json
+        {
+            "additionalProperties": true,
+            "description": "A \"problem detail\" carrying machine-readable details of errors in HTTP response content.",
+            "externalDocs": {
+                "description": "RFC 9457",
+                "url": "https://www.rfc-editor.org/rfc/rfc9457.html"
+            },
+            "properties": {
+                "type": {
+                    "default": "about:blank",
+                    "description": "A URI reference that uniquely identifies the problem type only in the context of the provided API. Opposed to the specification in RFC-9457, it is neither recommended to be dereferenceable and point to a human-readable documentation nor globally unique for the problem type",
+                    "example": "/some/uri-reference",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "A short summary of the problem type. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.",
+                    "example": "some title for the error situation",
+                    "title": "Title",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The HTTP status code generated by the origin server for this occurrence of the problem",
+                    "example": 500,
+                    "maximum": 599,
+                    "minimum": 100,
+                    "title": "Status",
+                    "type": "integer"
+                },
+                "detail": {
+                    "description": "A human readable explanation specific to this occurrence of the problem that is helpful to locate the problem and give advice on how to proceed. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.",
+                    "example": "some description for the error situation",
+                    "title": "Detail",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "A URI reference that identifies the specific occurrence of the problem, e.g. by adding a fragment identifier or sub-path to the problem type. May be used to locate the root of this problem in the source code.",
+                    "example": "/some/uri-reference#specific-occurrence-context",
+                    "title": "Instance",
+                    "type": "string"
+                }
+            },
+            "title": "Problem",
+            "type": "object"
+        }
+        ```
+
+
+
+<p class="response-title">
+    <strong>Response <span class="response-code code-401">401</span>&nbsp;<span class="status-phrase">Unauthorized</span></strong>
+</p>
+
+=== "application/json"
+    
+    
+    ```json
+    {
+        "type": "about:blank",
+        "title": "Unauthorized",
+        "status": 401,
+        "detail": "Invalid or missing API key"
+    }
+    ```
+    
+
+    
+
+    ??? hint "Schema of the response body"
+        ```json
+        
+        ```
+
+
+
+
+<hr class="operation-separator" />
+
+### <span class="http-get">GET</span> /v1/health/info
+Get application information
+
+??? note "Description"
+    Returns detailed information about the application, including name, version,
+    current timestamp, uptime, and environment.
+
+    ### Usage
+    - Useful for diagnostics and monitoring.
+    - Requires a valid API key for authentication.
+
+    #### Response
+    A JSON object with application metadata.
+
+
+**Input parameters**
+
+<table>
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>In</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Nullable</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="parameter-name"><code>APIKeyQuery</code></td>
+            <td>query</td>
+            <td>string</td>
+            <td>N/A</td>
+            <td>No</td>
+            <td>API key</td>
+        </tr>
+        <tr>
+            <td class="parameter-name"><code>APIKeyHeader</code></td>
+            <td>header</td>
+            <td>string</td>
+            <td>N/A</td>
+            <td>No</td>
+            <td>API key</td>
+        </tr>
+        <tr>
+            <td class="parameter-name"><code>authorization</code></td>
+            <td>query</td>
+            <td>string</td>
+            <td></td>
+            <td>No</td>
+            <td>Chave de autorização, caso não esteja sendo enviada como header.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="response-title">
+    <strong>Response <span class="response-code code-200">200</span>&nbsp;<span class="status-phrase">OK</span></strong>
+</p>
+
+=== "application/json"
+    
+    
+    ```json
+    {
+        "app_name": "demo-bd",
+        "app_title": "Demo BD",
+        "environment": "production",
+        "timestamp": "2025-05-19T17:20:00Z",
+        "uptime_seconds": 12345.67,
+        "version": "1.0.0"
+    }
+    ```
+    <span class="small-note">⚠️</span>&nbsp;<em class="small-note warning">This example has been generated automatically from the schema and it is not accurate. Refer to the schema for more information.</em>
+
+    
+
+    ??? hint "Schema of the response body"
+        ```json
+        {
+            "properties": {
+                "appName": {
+                    "type": "string",
+                    "title": "Appname"
+                },
+                "appTitle": {
+                    "type": "string",
+                    "title": "Apptitle"
+                },
+                "version": {
+                    "type": "string",
+                    "title": "Version"
+                },
+                "timestamp": {
+                    "type": "string",
+                    "title": "Timestamp"
+                },
+                "uptimeSeconds": {
+                    "type": "number",
+                    "title": "Uptimeseconds"
+                },
+                "environment": {
+                    "type": "string",
+                    "title": "Environment"
+                }
+            },
+            "type": "object",
+            "required": [
+                "appName",
+                "appTitle",
+                "version",
+                "timestamp",
+                "uptimeSeconds",
+                "environment"
+            ],
+            "title": "InfoResponseSchema",
+            "description": "Schema for application information response.",
+            "example": {
+                "app_name": "demo-bd",
+                "app_title": "Demo BD",
+                "environment": "production",
+                "timestamp": "2025-05-19T17:20:00Z",
+                "uptime_seconds": 12345.67,
+                "version": "1.0.0"
+            }
+        }
+        ```
+
+
+
+<p class="response-title">
+    <strong>Other responses</strong>
+</p>
+
+=== "application/problem+json"
+    
+    
+    ```json
+    {
+        "type": "/some/uri-reference",
+        "title": "some title for the error situation",
+        "status": 500,
+        "detail": "some description for the error situation",
+        "instance": "/some/uri-reference#specific-occurrence-context"
+    }
+    ```
+    <span class="small-note">⚠️</span>&nbsp;<em class="small-note warning">This example has been generated automatically from the schema and it is not accurate. Refer to the schema for more information.</em>
+
+    
+
+    ??? hint "Schema of the response body"
+        ```json
+        {
+            "additionalProperties": true,
+            "description": "A \"problem detail\" carrying machine-readable details of errors in HTTP response content.",
+            "externalDocs": {
+                "description": "RFC 9457",
+                "url": "https://www.rfc-editor.org/rfc/rfc9457.html"
+            },
+            "properties": {
+                "type": {
+                    "default": "about:blank",
+                    "description": "A URI reference that uniquely identifies the problem type only in the context of the provided API. Opposed to the specification in RFC-9457, it is neither recommended to be dereferenceable and point to a human-readable documentation nor globally unique for the problem type",
+                    "example": "/some/uri-reference",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "A short summary of the problem type. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.",
+                    "example": "some title for the error situation",
+                    "title": "Title",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The HTTP status code generated by the origin server for this occurrence of the problem",
+                    "example": 500,
+                    "maximum": 599,
+                    "minimum": 100,
+                    "title": "Status",
+                    "type": "integer"
+                },
+                "detail": {
+                    "description": "A human readable explanation specific to this occurrence of the problem that is helpful to locate the problem and give advice on how to proceed. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.",
+                    "example": "some description for the error situation",
+                    "title": "Detail",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "A URI reference that identifies the specific occurrence of the problem, e.g. by adding a fragment identifier or sub-path to the problem type. May be used to locate the root of this problem in the source code.",
+                    "example": "/some/uri-reference#specific-occurrence-context",
+                    "title": "Instance",
+                    "type": "string"
+                }
+            },
+            "title": "Problem",
+            "type": "object"
+        }
+        ```
+
+
+
+<p class="response-title">
+    <strong>Response <span class="response-code code-401">401</span>&nbsp;<span class="status-phrase">Unauthorized</span></strong>
+</p>
+
+=== "application/json"
+    
+    
+    ```json
+    {
+        "type": "about:blank",
+        "title": "Unauthorized",
+        "status": 401,
+        "detail": "Invalid or missing API key"
+    }
+    ```
+    
+
+    
+
+    ??? hint "Schema of the response body"
+        ```json
+        
+        ```
+
+
+
+
+<hr class="operation-separator" />
+
+### <span class="http-get">GET</span> /v1/health/custom_error_test
+Custom Error Test
+
+??? note "Description"
+    Raise a sample ProblemException for testing error responses.
+
 
 <p class="response-title">
     <strong>Response <span class="response-code code-200">200</span>&nbsp;<span class="status-phrase">OK</span></strong>
@@ -60,31 +455,28 @@ Compute
     ??? hint "Schema of the response body"
         ```json
         {
-            "type": "integer",
-            "title": "Response Compute Compute Get"
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Response Custom Error Test V1 Health Custom Error Test Get"
         }
         ```
 
 
 
 <p class="response-title">
-    <strong>Response <span class="response-code code-422">422</span>&nbsp;<span class="status-phrase">Unprocessable Entity</span></strong>
+    <strong>Other responses</strong>
 </p>
 
-=== "application/json"
+=== "application/problem+json"
     
     
     ```json
     {
-        "detail": [
-            {
-                "loc": [
-                    null
-                ],
-                "msg": "string",
-                "type": "string"
-            }
-        ]
+        "type": "/some/uri-reference",
+        "title": "some title for the error situation",
+        "status": 500,
+        "detail": "some description for the error situation",
+        "instance": "/some/uri-reference#specific-occurrence-context"
     }
     ```
     <span class="small-note">⚠️</span>&nbsp;<em class="small-note warning">This example has been generated automatically from the schema and it is not accurate. Refer to the schema for more information.</em>
@@ -94,17 +486,49 @@ Compute
     ??? hint "Schema of the response body"
         ```json
         {
+            "additionalProperties": true,
+            "description": "A \"problem detail\" carrying machine-readable details of errors in HTTP response content.",
+            "externalDocs": {
+                "description": "RFC 9457",
+                "url": "https://www.rfc-editor.org/rfc/rfc9457.html"
+            },
             "properties": {
+                "type": {
+                    "default": "about:blank",
+                    "description": "A URI reference that uniquely identifies the problem type only in the context of the provided API. Opposed to the specification in RFC-9457, it is neither recommended to be dereferenceable and point to a human-readable documentation nor globally unique for the problem type",
+                    "example": "/some/uri-reference",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "A short summary of the problem type. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.",
+                    "example": "some title for the error situation",
+                    "title": "Title",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The HTTP status code generated by the origin server for this occurrence of the problem",
+                    "example": 500,
+                    "maximum": 599,
+                    "minimum": 100,
+                    "title": "Status",
+                    "type": "integer"
+                },
                 "detail": {
-                    "items": {
-                        "$ref": "#/components/schemas/ValidationError"
-                    },
-                    "type": "array",
-                    "title": "Detail"
+                    "description": "A human readable explanation specific to this occurrence of the problem that is helpful to locate the problem and give advice on how to proceed. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.",
+                    "example": "some description for the error situation",
+                    "title": "Detail",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "A URI reference that identifies the specific occurrence of the problem, e.g. by adding a fragment identifier or sub-path to the problem type. May be used to locate the root of this problem in the source code.",
+                    "example": "/some/uri-reference#specific-occurrence-context",
+                    "title": "Instance",
+                    "type": "string"
                 }
             },
-            "type": "object",
-            "title": "HTTPValidationError"
+            "title": "Problem",
+            "type": "object"
         }
         ```
 
@@ -117,7 +541,7 @@ Compute
 ## Schemas
 
 
-### HTTPValidationError
+### InfoResponseSchema
 
 <table>
     <thead>
@@ -128,15 +552,35 @@ Compute
     </thead>
     <tbody>
         <tr>
-            <td><code>detail</code></td>
-            <td>Array&lt;<a href="#validationerror" class="ref-link">ValidationError</a>&gt;</td>
+            <td><code>appName</code></td>
+            <td><span class="string-type">string</span></td>
+        </tr>
+        <tr>
+            <td><code>appTitle</code></td>
+            <td><span class="string-type">string</span></td>
+        </tr>
+        <tr>
+            <td><code>environment</code></td>
+            <td><span class="string-type">string</span></td>
+        </tr>
+        <tr>
+            <td><code>timestamp</code></td>
+            <td><span class="string-type">string</span></td>
+        </tr>
+        <tr>
+            <td><code>uptimeSeconds</code></td>
+            <td><span class="number-type">number</span></td>
+        </tr>
+        <tr>
+            <td><code>version</code></td>
+            <td><span class="string-type">string</span></td>
         </tr>
     </tbody>
 </table>
 
 
 
-### ValidationError
+### StatusCheckResponseSchema
 
 <table>
     <thead>
@@ -147,18 +591,40 @@ Compute
     </thead>
     <tbody>
         <tr>
-            <td><code>loc</code></td>
-            <td>Array&lt;&gt;</td>
-        </tr>
-        <tr>
-            <td><code>msg</code></td>
-            <td><span class="string-type">string</span></td>
-        </tr>
-        <tr>
-            <td><code>type</code></td>
+            <td><code>message</code></td>
             <td><span class="string-type">string</span></td>
         </tr>
     </tbody>
 </table>
 
 
+
+## Security schemes
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Scheme</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr>
+            <td>APIKeyHeader</td>
+            <td>apiKey</td>
+            <td></td>
+            <td></td>
+        </tr>
+        
+        <tr>
+            <td>APIKeyQuery</td>
+            <td>apiKey</td>
+            <td></td>
+            <td></td>
+        </tr>
+        
+    </tbody>
+</table>
