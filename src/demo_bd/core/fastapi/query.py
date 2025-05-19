@@ -3,7 +3,7 @@
 import datetime as dt
 from typing import Annotated
 
-from fastapi import Query
+from fastapi import Depends, Query
 
 
 class ApiQueryParams:
@@ -21,6 +21,28 @@ class ApiQueryParams:
         ),
     ):
         self.authorization = authorization
+
+
+def get_api_query_params_dep():
+    """
+    Returns a dependency provider function for ApiQueryParams, suitable for use with FastAPI's Depends.
+    This factory can be imported and reused in any router module.
+    """
+
+    def _dep(
+        authorization: str = Query(
+            None,
+            title="Chave",
+            description="Chave de autorização, caso não esteja sendo enviada como header.",
+        ),
+    ):
+        return ApiQueryParams(authorization=authorization)
+
+    return _dep
+
+
+# Canonical dependency instance for use in route signatures
+api_query_params_dep: ApiQueryParams = Depends(get_api_query_params_dep())
 
 
 class ApiQueryKeySetPaginationParams:
