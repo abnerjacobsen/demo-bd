@@ -15,7 +15,7 @@ from demo_bd.core.db.manager import sa_manager
 bind = sa_manager.get_bind()
 
 
-class UserModel(bind.declarative_base, UUIDv7AuditBase, SlugKey):
+class UserModel(bind.declarative_base, UUIDv7AuditBase, SlugKey):  # type: ignore
     """Represents a user in the system."""
 
     name: Mapped[str] = mapped_column(
