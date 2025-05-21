@@ -1,5 +1,6 @@
 nav:
   - Start:
     - Home: index.md
+  - Contributing: contributing.md
   - ...
   - ADR: adr
