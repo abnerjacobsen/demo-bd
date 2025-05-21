@@ -114,11 +114,7 @@ convention = "numpy"
   shell = """
     if [ $dev ]
     then {
-      uvicorn \
-        --host $host \
-        --port $port \
-        --reload \
-        demo_bd.api:app
+      python src/demo_bd/api.py --host $host --port $port --reload
     } else {
       gunicorn \
         --access-logfile - \
@@ -186,4 +182,3 @@ convention = "numpy"
 
     [[tool.poe.tasks.test.sequence]]
     cmd = "coverage xml"
-
