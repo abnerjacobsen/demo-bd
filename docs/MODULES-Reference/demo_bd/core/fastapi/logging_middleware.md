@@ -1,0 +1,1 @@
+::: src.demo_bd.core.fastapi.logging_middleware
