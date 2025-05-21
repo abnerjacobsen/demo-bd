@@ -15,7 +15,7 @@ from demo_bd.core.db.manager import sa_manager
 bind = sa_manager.get_bind()
 
 
-class UserModel(bind.declarative_base, UUIDv7AuditBase, SlugKey):
+class UserModel(bind.declarative_base, UUIDv7AuditBase, SlugKey):  # type: ignore
     """Represents a user in the system."""
 
     name: Mapped[str] = mapped_column(
@@ -30,13 +30,12 @@ class UserModel(bind.declarative_base, UUIDv7AuditBase, SlugKey):
         server_default=text("'{}'::jsonb"),
     )
 
-
-__tablename__ = "users"
-__mapper_args__ = {"eager_defaults": True}
-__admin_icon__ = "fa-solid fa-comments"
-__admin_label__ = "Users"
-__admin_name__ = "User"
-__admin_identity__ = "user"
+    __tablename__ = "users"
+    __mapper_args__ = {"eager_defaults": True}
+    __admin_icon__ = "fa-solid fa-comments"
+    __admin_label__ = "Users"
+    __admin_name__ = "User"
+    __admin_identity__ = "user"
 
 
 class UserRepository(SQLAlchemyAsyncRepository[UserModel]):
