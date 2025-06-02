@@ -17,7 +17,7 @@ update_changelog_on_bump = true
 version_provider = "poetry"
 
 [tool.poetry.dependencies]  # https://python-poetry.org/docs/dependency-specification/
-fastapi = { extras = ["all"], version = ">=0.110.1" }
+fastapi = {extras = ["standard"], version = "^0.115.12"}
 gunicorn = ">=21.2.0"
 poethepoet = ">=0.25.0"
 python = ">=3.11,<3.13"
