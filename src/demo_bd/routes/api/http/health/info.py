@@ -1,6 +1,7 @@
 import pendulum
 from fastapi import APIRouter, Depends, status
 from fastapi_problem_details import ProblemException
+from http import HTTPStatus
 
 from demo_bd.core.config.settings import settings
 from demo_bd.core.fastapi.apikey import make_api_key_dependency
@@ -25,6 +26,7 @@ UNAUTHORIZED_401_RESPONSE = {
 }
 
 health_info_route = APIRouter(prefix="/v1/health", tags=["health"])
+hello_word = APIRouter(prefix="/hello", tags=["hello"])
 
 
 @health_info_route.get(
@@ -41,7 +43,8 @@ health_info_route = APIRouter(prefix="/v1/health", tags=["health"])
     ),
     response_description="A message confirming the API is up and running.",
     status_code=status.HTTP_200_OK,
-    responses={200: {"description": "API is healthy"}, 401: UNAUTHORIZED_401_RESPONSE},
+    responses={200: {"description": "API is healthy"},
+               401: UNAUTHORIZED_401_RESPONSE},
 )
 def status_check(
     query: ApiQueryParams = api_query_params_dep,
@@ -70,7 +73,8 @@ def status_check(
     ),
     response_description="Application metadata including name, version, timestamp, uptime, and environment.",
     status_code=status.HTTP_200_OK,
-    responses={200: {"description": "Application information"}, 401: UNAUTHORIZED_401_RESPONSE},
+    responses={200: {"description": "Application information"},
+               401: UNAUTHORIZED_401_RESPONSE},
 )
 def info(
     query: ApiQueryParams = api_query_params_dep,
@@ -104,3 +108,8 @@ def custom_error_test() -> dict:
         matadata={"key": "value"},
         headers={"Retry-After": "30"},
     )
+
+
+@hello_word.get('/hello', status_code=HTTPStatus.OK)
+def read_root():
+    return {'message': 'Olá Mundo!'}
