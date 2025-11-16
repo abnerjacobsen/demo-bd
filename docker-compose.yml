@@ -87,6 +87,14 @@ services:
       - "5050:80"
     restart: unless-stopped
 
+  newt:
+    image: fosrl/newt
+    container_name: newt
+    restart: unless-stopped
+    environment:
+      - PANGOLIN_ENDPOINT=https://pl.snapby.com
+      - NEWT_ID=sb0v8n57dtbrigz
+      - NEWT_SECRET=qy7ypgfplxetroqt7qso9c2yj5u4d3g5jj1m3ixtebkwbvrc
 volumes:
   postgres_data:
   pgadmin_data:
